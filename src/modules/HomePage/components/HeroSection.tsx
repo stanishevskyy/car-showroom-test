@@ -24,10 +24,10 @@ export const HeroSection = () => {
         <img className="rounded-2xl lg:hidden" src={HeroCar} alt="" />
 
         <div className="flex flex-col gap-4 lg:flex-row">
-          <button className="w-[358px] h-[64px] bg-[#2563EB] text-[#FFFFFF] rounded-[14px] px-8 py-4 font-inter font-semibold text-[24px] leading-[32px] lg:w-[196px] lg:h-[58px] lg:rounded-[12px] lg:py-[17px] lg:text-[16px] lg:leading-[24px] lg:font-normal">
+          <button className="h-[64px] bg-[#2563EB] text-[#FFFFFF] rounded-[14px] px-8 py-4 font-inter font-semibold text-[24px] leading-[32px] lg:w-[196px] lg:h-[58px] lg:rounded-[12px] lg:py-[17px] lg:text-[16px] lg:leading-[24px] lg:font-normal">
             View Inventory
           </button>
-          <button className="w-[358px] h-[64px] bg-[#EFF4FF] text-[#0B1C30] border border-[#C3C6D7] rounded-[14px] px-8 py-4 font-inter font-semibold text-[24px] leading-[32px] lg:w-[196px] lg:h-[58px] lg:rounded-[12px] lg:py-[17px] lg:text-[16px] lg:leading-[24px] lg:font-normal">
+          <button className="h-[64px] bg-[#EFF4FF] text-[#0B1C30] border border-[#C3C6D7] rounded-[14px] px-8 py-4 font-inter font-semibold text-[24px] leading-[32px] lg:w-[196px] lg:h-[58px] lg:rounded-[12px] lg:py-[17px] lg:text-[16px] lg:leading-[24px] lg:font-normal">
             Sell Your Car
           </button>
         </div>
