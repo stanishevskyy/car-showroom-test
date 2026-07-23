@@ -1,150 +1,57 @@
-export const CarCard = ({ car }) => {
+import type React from 'react';
+
+import type { Vehicle } from '@/shared/types/Vehicle';
+
+type Props = {
+  vehicle: Vehicle;
+};
+
+export const CarCard: React.FC<Props> = ({ vehicle }) => {
   return (
-    <article
-      className="
-        overflow-hidden
-        rounded-[12px]
-        border border-[#C3C6D7]
-        bg-white
-      "
-    >
-      {/* Image */}
-      <div className="relative">
+    <article className="group overflow-hidden rounded-[12px] border border-[#C3C6D7] bg-white transition-all duration-300 hover:-translate-y-1 hover:border-[#004AC6] hover:shadow-[0_8px_24px_0_#004AC61A]">
+      <div className="relative overflow-hidden">
         <img
-          src={car.thumbnail}
-          alt={car.title}
-          className="
-            w-full
-            h-[216px]
-            object-cover
-          "
+          src={vehicle.thumbnail}
+          alt={vehicle.title}
+          className="h-[216px] w-full object-cover transition-transform duration-300 group-hover:scale-105"
         />
 
-        <span
-          className="
-            absolute
-            top-3
-            left-3
-            rounded-full
-            bg-[#004AC6]
-            px-3
-            py-1
-            text-[12px]
-            font-semibold
-            text-white
-          "
-        >
-          New Arrival
-        </span>
-
-        <span
-          className="
-            absolute
-            top-3
-            right-3
-            rounded-full
-            bg-white
-            px-3
-            py-1
-            text-[12px]
-            font-semibold
-            text-[#004AC6]
-          "
-        >
-          ★ {car.rating}
+        <span className="absolute right-3 top-3 rounded-full bg-white px-3 py-1 text-[12px] font-semibold text-[#004AC6] shadow-sm">
+          ★ {vehicle.rating}
         </span>
       </div>
 
-      {/* Content */}
       <div className="p-5">
         <div className="flex justify-between gap-3">
-          <h3
-            className="
-              font-bold
-              text-[20px]
-              leading-[28px]
-              text-[#0B1C30]
-            "
-          >
-            {car.title}
-          </h3>
+          <h3 className="font-bold text-[20px] leading-[28px] text-[#0B1C30]">{vehicle.title}</h3>
 
-          <p
-            className="
-              whitespace-nowrap
-              font-bold
-              text-[20px]
-              leading-[28px]
-              text-[#004AC6]
-            "
-          >
-            ${car.price.toLocaleString()}
-          </p>
+          <div className="whitespace-nowrap text-right">
+            <p className="font-bold text-[20px] leading-[28px] text-[#004AC6]">${vehicle.price.toFixed(2)}</p>
+
+            <p className="text-[12px] text-[#565E74] line-through">
+              ${(vehicle.price / (1 - vehicle.discountPercentage / 100)).toFixed(2)}
+            </p>
+
+            <span className="text-[12px] font-semibold text-green-600">-{vehicle.discountPercentage}%</span>
+          </div>
         </div>
 
-        <p
-          className="
-            mt-1
-            text-[14px]
-            leading-[20px]
-            text-[#565E74]
-          "
-        >
-          {car.brand} • {car.description}
-        </p>
+        <p className="mt-1 text-[14px] leading-[20px] text-[#565E74]">{vehicle.brand}</p>
 
-        <p
-          className="
-            mt-4
-            line-clamp-2
-            text-[14px]
-            leading-[20px]
-            text-[#565E74]
-          "
-        >
-          {car.fullDescription}
-        </p>
+        <p className="mt-4 line-clamp-2 text-[14px] leading-[20px] text-[#565E74]">{vehicle.description}</p>
 
         <div className="mt-4 flex gap-2">
-          {car.tags.map((tag) => (
-            <span
-              key={tag}
-              className="
-                rounded-full
-                bg-[#E5EEFF]
-                px-3
-                py-1
-                text-[12px]
-                font-semibold
-                text-[#565E74]
-              "
-            >
+          {vehicle.tags.map((tag) => (
+            <span key={tag} className="rounded-full bg-[#E5EEFF] px-3 py-1 text-[12px] font-semibold text-[#565E74]">
               {tag}
             </span>
           ))}
         </div>
 
         <div className="mt-6 flex items-center justify-between">
-          <span
-            className="
-              text-[14px]
-              text-[#565E74]
-            "
-          >
-            In Stock: {car.stock} units
-          </span>
+          <span className="text-[14px] text-[#565E74]">In Stock: {vehicle.stock} units</span>
 
-          <button
-            className="
-              h-[54px]
-              rounded-[8px]
-              bg-[#DCE9FF]
-              px-6
-              font-semibold
-              text-[14px]
-              text-[#004AC6]
-            "
-          >
+          <button className="h-[54px] rounded-[8px] bg-[#DCE9FF] px-6 font-semibold text-[14px] text-[#004AC6] transition-colors duration-200 hover:bg-[#004AC6] hover:text-white cursor-pointer">
             View Details
           </button>
         </div>
