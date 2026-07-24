@@ -1,10 +1,12 @@
 export const wait = () => {
-  return new Promise((resolve) => setTimeout(resolve, 300));
+  return new Promise((resolve) => setTimeout(resolve, 600));
 };
 
 type RequestMethod = 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE';
 
 export const request = async <T>(url: string, method: RequestMethod = 'GET', data: unknown = null): Promise<T> => {
+  await wait();
+
   const options: RequestInit = { method };
 
   if (data) {

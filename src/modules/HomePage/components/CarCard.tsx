@@ -1,6 +1,7 @@
 import type React from 'react';
+import { Link } from 'react-router-dom';
 
-import type { Vehicle } from '@/shared/types/Vehicle';
+import type { Vehicle } from '@/shared/types/vehicle';
 
 type Props = {
   vehicle: Vehicle;
@@ -51,9 +52,12 @@ export const CarCard: React.FC<Props> = ({ vehicle }) => {
         <div className="mt-6 flex items-center justify-between">
           <span className="text-[14px] text-[#565E74]">In Stock: {vehicle.stock} units</span>
 
-          <button className="h-[54px] rounded-[8px] bg-[#DCE9FF] px-6 font-semibold text-[14px] text-[#004AC6] transition-colors duration-200 hover:bg-[#004AC6] hover:text-white cursor-pointer">
+          <Link
+            to={`/vehicle/${vehicle.id}`}
+            className="rounded-[8px] bg-[#DCE9FF] px-6 py-4 font-semibold  text-[14px] text-[#004AC6] transition-colors duration-200 hover:bg-[#004AC6] hover:text-white cursor-pointer"
+          >
             View Details
-          </button>
+          </Link>
         </div>
       </div>
     </article>

@@ -6,7 +6,8 @@ import { CarList } from './components/CarList';
 import { HeroSection } from './components/HeroSection';
 
 import type { VehiclesResponse } from '@/shared/types/vehiclesResponse';
-import type { Vehicle } from '@/shared/types/Vehicle';
+import type { Vehicle } from '@/shared/types/vehicle';
+import { StatusMessage } from '@/shared/components/StatusMessage/StatusMessage';
 
 export const HomePage = () => {
   const [data, setData] = useState<VehiclesResponse | null>(null);
@@ -37,10 +38,21 @@ export const HomePage = () => {
     loadData();
   }, []);
 
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  }, []);
+
+  if (loading) {
+    return <StatusMessage type="loading" />;
+  }
+
   return (
     <main className="bg-[#F8F9FF]">
       <HeroSection />
-      {!loading && <CarList loading={loading} vehicles={vehicles} />}
+      <CarList error={error} vehicles={vehicles} />
     </main>
   );
 };

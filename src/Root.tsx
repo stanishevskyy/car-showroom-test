@@ -10,8 +10,7 @@ export const Root = () => {
       <Routes>
         <Route path="/" element={<App />}>
           <Route index element={<HomePage />} />
-
-          <Route path="product" element={<ProductDetails />} />
+          <Route path="vehicle/:slug" element={<ProductDetails />} />
         </Route>
       </Routes>
     </HashRouter>
