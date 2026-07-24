@@ -41,9 +41,12 @@ export const CarCard: React.FC<Props> = ({ vehicle }) => {
 
         <p className="mt-4 line-clamp-2 text-[14px] leading-5 text-[#565E74]">{vehicle.description}</p>
 
-        <div className="mt-4 flex gap-2">
+        <div className="mt-4 flex flex-wrap gap-2 lg:flex-nowrap">
           {vehicle.tags.map((tag) => (
-            <span key={tag} className="rounded-full bg-[#E5EEFF] px-3 py-1 text-[12px] font-semibold text-[#565E74]">
+            <span
+              key={tag}
+              className="whitespace-nowrap rounded-full bg-[#E5EEFF] px-3 py-1 text-[12px] font-semibold text-[#565E74]"
+            >
               {tag}
             </span>
           ))}

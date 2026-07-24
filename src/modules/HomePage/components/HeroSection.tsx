@@ -2,7 +2,6 @@ import QualityBadge from '@/assets/icons/hero-icons/quality-badge.svg';
 import HeroCar from '@/assets/images/hero-images/hero-car.png';
 
 export const HeroSection = () => {
-  const newLocal = "h-16[#EFF4FF] text-[#0B1C30] border border-[#C3C6D7] rounded-[14px] px-8 py-4 font-inter font-semibold text-[24px] leading-8-[196px] lg:h-lg:h-14.5ounded-[12px] lg:py-4.25 lg:text-[16px] lg:leading-[24px] lg:font-normal";
   return (
     <section className="relative py-8 px-4 lg:px-10 lg:py-35.25 lg:bg-cover lg:bg-center lg:bg-[url('@/assets/images/hero-images/hero-bg.png')]">
       <div className="absolute inset-0 hidden lg:block bg-[linear-gradient(90deg,rgba(248,249,255,0.9)_0%,rgba(248,249,255,0)_100%)]" />
@@ -23,12 +22,12 @@ export const HeroSection = () => {
         </p>
 
         <img className="rounded-2xl lg:hidden" src={HeroCar} alt="" />
-
         <div className="flex flex-col gap-4 lg:flex-row">
-          <button className="h-16 bg-[#2563EB] text-[#FFFFFF] rounded-[14px] px-8 py-4 font-inter font-semibold text-[24px] leading-8 lg:w-49 lg:h-14.5 lg:rounded-xl lg:py-4.25g:text-[16px] lglg:leading-6g:font-normal">
+          <button className="h-16 w-full rounded-[14px] bg-[#2563EB] px-8 text-2xl font-semibold text-white lg:h-14 lg:w-48 lg:rounded-xl lg:px-6 lg:text-base">
             View Inventory
           </button>
-          <button className={newLocal}>
+
+          <button className="h-16 w-full rounded-[14px] border border-[#2563EB] px-8 text-2xl font-semibold text-[#2563EB] lg:h-14 lg:w-48 lg:rounded-xl lg:px-6 lg:text-base">
             Sell Your Car
           </button>
         </div>
