@@ -31,10 +31,11 @@ export const DesktopFilters: React.FC<Props> = ({ maxPrice, brands, setFilters }
 
   return (
     <div className="hidden lg:block px-10 py-8">
-      <div className="flex items-center justify-between px-6 py-6 bg-[#EFF4FF] border rounded-xl border-[#C3C6D7] shadow-[0_1px_2px_0_#0000000D]">
-        <div className="flex flex-col gap-2">
-          <p className="font-normal text-[16px] leading-6 text-[#565E74]">Search</p>
-          <div className="relative w-54.25 h-10.25">
+      <div className="flex items-end gap-6 rounded-xl border border-[#C3C6D7] bg-[#EFF4FF] px-6 py-6 shadow-[0_1px_2px_0_#0000000D]">
+        <div className="flex flex-1 flex-col gap-2">
+          <p className="text-[16px] leading-6 text-[#565E74]">Search</p>
+
+          <div className="relative h-10.5 w-full">
             <img src={Search} alt="" className="absolute left-4 top-1/2 -translate-y-1/2" />
 
             <input
@@ -42,25 +43,25 @@ export const DesktopFilters: React.FC<Props> = ({ maxPrice, brands, setFilters }
               value={queryValue}
               onChange={(e) => setQueryValue(e.target.value)}
               placeholder="Model or keyword"
-              className="w-full h-full rounded-lg border border-[#737686] bg-white py-2.5 pr-4 pl-10 outline-none"
+              className="h-full w-full rounded-lg border border-[#737686] bg-white py-2.5 pr-4 pl-10 outline-none"
             />
           </div>
         </div>
 
-        <div className="relative flex flex-col gap-2">
-          <p className="font-normal text-[16px] leading-6 text-[#565E74]">Brand</p>
+        <div className="relative flex flex-1 flex-col gap-2">
+          <p className="text-[16px] leading-6 text-[#565E74]">Brand</p>
 
           <button
             onClick={() => setIsBrandOpen((prev) => !prev)}
             onBlur={() => setIsBrandOpen(false)}
-            className="cursor-pointer flex items-center justify-between w-54.25 h-10.25 rounded-lg border border-[#737686]  bg-white px-4 text-[16px] leading-6 text-[#565E74]"
+            className="cursor-pointer flex h-10.5 w-full items-center justify-between rounded-lg border border-[#737686] bg-white px-4 text-[16px] leading-6 text-[#565E74]"
           >
             <span>{selectedBrand}</span>
             <img src={ArrowDown} alt="" />
           </button>
 
           {isBrandOpen && (
-            <ul className="absolute top-17.5 z-10 w-54.25 rounded-lg border border-[#C3C6D7] bg-white py-2 shadow-lg">
+            <ul className="absolute top-[70px] z-10 w-full rounded-lg border border-[#C3C6D7] bg-white py-2 shadow-lg">
               {brands.map((brand) => (
                 <li key={brand}>
                   <button
@@ -69,7 +70,7 @@ export const DesktopFilters: React.FC<Props> = ({ maxPrice, brands, setFilters }
                       setIsBrandOpen(false);
                       setSelectedBrand(brand);
                     }}
-                    className="cursor-pointer w-full px-4 py-2 text-left text-[16px] leading-6 text-[#565E74] hover:bg-[#E5EEFF]"
+                    className="cursor-pointer w-full px-4 py-2 text-left hover:bg-[#E5EEFF]"
                   >
                     {brand}
                   </button>
@@ -79,8 +80,8 @@ export const DesktopFilters: React.FC<Props> = ({ maxPrice, brands, setFilters }
           )}
         </div>
 
-        <div className="flex flex-col gap-2">
-          <p className="font-normal text-[16px] leading-6 text-[#565E74]">Price Range: {selectedPrice}</p>
+        <div className="flex flex-1 flex-col gap-6 place-self-start">
+          <p className="text-[16px] leading-6 text-[#565E74]">Price Range: {selectedPrice}</p>
 
           <input
             type="range"
@@ -88,24 +89,24 @@ export const DesktopFilters: React.FC<Props> = ({ maxPrice, brands, setFilters }
             onChange={(e) => setSelectedPrice(Number(e.target.value))}
             min={0}
             max={maxPrice}
-            className="cursor-grab w-54.25 accent-[#004AC6]"
+            className="w-full cursor-grab accent-[#004AC6]"
           />
         </div>
 
-        <div className="relative flex flex-col gap-2">
-          <p className="font-normal text-[16px] leading-6 text-[#565E74]">Sort By</p>
+        <div className="relative flex flex-1 flex-col gap-2">
+          <p className="text-[16px] leading-6 text-[#565E74]">Sort By</p>
 
           <button
             onClick={() => setIsSortOpen((prev) => !prev)}
             onBlur={() => setIsSortOpen(false)}
-            className="cursor-pointer flex items-center justify-between w-54.25 h-10.25 rounded-lg border border-[#737686]  bg-white px-4 text-[16px] leading-6 text-[#565E74]"
+            className="cursor-pointer flex h-10.5 w-full items-center justify-between rounded-lg border border-[#737686] bg-white px-4 text-[16px] leading-6 text-[#565E74]"
           >
             <span>{selectedSort}</span>
             <img src={ArrowDown} alt="" />
           </button>
 
           {isSortOpen && (
-            <ul className="absolute top-17.5 z-10 w-54.25 rounded-lg border border-[#C3C6D7] bg-white py-2 shadow-lg">
+            <ul className="absolute top-[70px] z-10 w-full rounded-lg border border-[#C3C6D7] bg-white py-2 shadow-lg">
               {Object.values(SortBy).map((sortBy) => (
                 <li key={sortBy}>
                   <button
@@ -114,7 +115,7 @@ export const DesktopFilters: React.FC<Props> = ({ maxPrice, brands, setFilters }
                       setIsSortOpen(false);
                       setSelectedSort(sortBy);
                     }}
-                    className="cursor-pointer w-full px-4 py-2 text-left text-[16px] leading-6 text-[#565E74] hover:bg-[#E5EEFF]"
+                    className="cursor-pointer w-full px-4 py-2 text-left hover:bg-[#E5EEFF]"
                   >
                     {sortBy}
                   </button>
@@ -124,7 +125,7 @@ export const DesktopFilters: React.FC<Props> = ({ maxPrice, brands, setFilters }
           )}
         </div>
 
-        <div className="flex gap-2">
+        <div className="flex flex-1 gap-2">
           <button
             onClick={() => {
               setFilters({
@@ -143,7 +144,7 @@ export const DesktopFilters: React.FC<Props> = ({ maxPrice, brands, setFilters }
 
               setSearchParams(newSearch);
             }}
-            className="cursor-pointer w-33.25 h-10.5 rounded-lg py-2.25 font-inter font-normal text-[16px] leading-6 text-center bg-[#004AC6] text-white transition-all duration-200 hover:bg-[#003A9E] hover:shadow-[0_4px_12px_0_#004AC633] active:scale-95"
+            className="cursor-pointer flex-1 rounded-lg bg-[#004AC6] px-4 py-2.5 text-white transition hover:bg-[#003A9E]"
           >
             Apply
           </button>
@@ -164,7 +165,7 @@ export const DesktopFilters: React.FC<Props> = ({ maxPrice, brands, setFilters }
 
               setSearchParams({});
             }}
-            className="cursor-pointer w-33.25 h-10.5 rounded-lg py-2.25 font-inter font-normal text-[16px] leading-6 text-center bg-[#F8F9FF] text-[#0B1C30] border border-[#C3C6D7] transition-all duration-200 hover:bg-[#E5EEFF] hover:border-[#004AC6] hover:text-[#004AC6] active:scale-95"
+            className="cursor-pointer flex-1 rounded-lg border border-[#C3C6D7] bg-[#F8F9FF] px-4 py-2.5 transition hover:border-[#004AC6] hover:bg-[#E5EEFF] hover:text-[#004AC6]"
           >
             Reset
           </button>
