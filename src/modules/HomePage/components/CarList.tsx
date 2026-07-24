@@ -1,7 +1,6 @@
 import type React from 'react';
 import { useMemo, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { Swiper, SwiperSlide } from 'swiper/react';
 
 import 'swiper/css';
 
@@ -11,18 +10,21 @@ import Filters from '@/assets/icons/car-list-icons/filters.svg';
 import Search from '@/assets/icons/car-list-icons/search-filters.svg';
 import ArrowDown from '@/assets/icons/car-list-icons/arrow-down.svg';
 
-import type { Vehicle } from '@/shared/types/Vehicle';
+import type { Vehicle } from '@/shared/types/vehicle';
 import { getSearchWith } from '@/shared/utils/getSearchWith';
 import { SortBy } from '@/shared/constants/sortBy';
+import { StatusMessage } from '@/shared/components/StatusMessage/StatusMessage';
 
 type Props = {
-  loading: boolean;
+  error: string;
   vehicles: Vehicle[];
 };
 
-export const CarList: React.FC<Props> = ({ loading, vehicles }) => {
+export const CarList: React.FC<Props> = ({ error, vehicles }) => {
   const brands = Array.from(new Set(vehicles.map((vehicle) => vehicle.brand)));
-  const maxPrice = vehicles.length ? Math.max(...vehicles.map((vehicle) => vehicle.price)) : 0;
+  const maxPrice = useMemo(() => {
+    return vehicles.length ? Math.max(...vehicles.map((vehicle) => vehicle.price)) : 0;
+  }, [vehicles]);
 
   const [searchParams, setSearchParams] = useSearchParams();
   const [isBrandOpen, setIsBrandOpen] = useState(false);
@@ -36,8 +38,6 @@ export const CarList: React.FC<Props> = ({ loading, vehicles }) => {
     price: maxPrice,
     sort: SortBy.Alphabetically,
   });
-
-  console.log(appliedFilters);
 
   const [queryValue, setQueryValue] = useState('');
   const [selectedBrand, setSelectedBrand] = useState('All brands');
@@ -80,7 +80,11 @@ export const CarList: React.FC<Props> = ({ loading, vehicles }) => {
     }
 
     return filteredProducts;
-  }, [appliedFilters]);
+  }, [appliedFilters, vehicles, maxPrice]);
+
+  if (error) {
+    return <StatusMessage type="error" message={error} />;
+  }
 
   return (
     <section className="pb-24">
@@ -172,7 +176,6 @@ export const CarList: React.FC<Props> = ({ loading, vehicles }) => {
                 )}
               </div>
 
-              {/* Price */}
               <div>
                 <p className="mb-3 text-xs font-semibold uppercase text-[#737686]">Price Range: {selectedPrice}</p>
 
@@ -186,7 +189,6 @@ export const CarList: React.FC<Props> = ({ loading, vehicles }) => {
                 />
               </div>
 
-              {/* Sort */}
               <div className="relative w-full">
                 <p className="mb-2 text-xs font-semibold uppercase text-[#737686]">Sort By</p>
 
@@ -428,11 +430,9 @@ export const CarList: React.FC<Props> = ({ loading, vehicles }) => {
       </p>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-4 lg:px-10 lg:pt-[49px] lg:pb-[96px]">
-        {loading
-          ? Array.from({ length: 6 }).map((_, index) => (
-              <div key={index} className="h-[320px] rounded-xl bg-[#E5EEFF] animate-pulse" />
-            ))
-          : filteredProcuts.map((vehicle) => <CarCard key={vehicle.id} vehicle={vehicle} />)}
+        {filteredProcuts.map((vehicle) => (
+          <CarCard key={vehicle.id} vehicle={vehicle} />
+        ))}
       </div>
     </section>
   );
